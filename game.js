@@ -3,11 +3,11 @@ const ctx = canavas.getContext("2d");
 
 // Get background image
 const ground = new Image();
-ground.src = "images/ground.png";
+ground.src = "ground.png";
 
 // Get food image
 const foodImg = new Image();
-foodImg.src = "images/food.png";
+foodImg.src = "food.png";
 
 // Height and width box (1)
 let box = 32;
