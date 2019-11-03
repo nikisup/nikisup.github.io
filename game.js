@@ -3,11 +3,14 @@ const ctx = canavas.getContext("2d");
 
 // Get background image
 const ground = new Image();
-ground.src = "ground.png";
+ground.src = "images/ground.png";
 
 // Get food image
 const foodImg = new Image();
-foodImg.src = "food.png";
+foodImg.src = "images/food.png";
+
+const bomb = new Image();
+bomb.src = "images/bomb.png";
 
 // Height and width box (1)
 let box = 32;
@@ -15,11 +18,33 @@ let box = 32;
 // Keep score
 let score = 0;
 
+// Keep hp
+let hp = 100;
+
 // Object with draw food on x,y
 let food = {
 	// Round to int, range 1 - 18, draw in boxses
 	x: Math.floor((Math.random() * 17 + 1)) * box,
 	y: Math.floor((Math.random() * 15 + 3)) * box
+};
+
+let bombs = {
+	x: Math.floor((Math.random() * 17 + 1)) * box,
+	y: Math.floor((Math.random() * 15 + 3)) * box,	
+	x1: Math.floor((Math.random() * 17 + 1)) * box,
+	y1: Math.floor((Math.random() * 15 + 3)) * box,
+	x2: Math.floor((Math.random() * 17 + 1)) * box,
+	y2: Math.floor((Math.random() * 15 + 3)) * box,
+	x3: Math.floor((Math.random() * 17 + 1)) * box,
+	y3: Math.floor((Math.random() * 15 + 3)) * box,
+	x4: Math.floor((Math.random() * 17 + 1)) * box,
+	y4: Math.floor((Math.random() * 15 + 3)) * box,
+	x5: Math.floor((Math.random() * 17 + 1)) * box,
+	y5: Math.floor((Math.random() * 15 + 3)) * box,
+	x6: Math.floor((Math.random() * 17 + 1)) * box,
+	y6: Math.floor((Math.random() * 15 + 3)) * box,
+	x7: Math.floor((Math.random() * 17 + 1)) * box,
+	y7: Math.floor((Math.random() * 15 + 3)) * box,
 };
 
 // Snake
@@ -66,6 +91,15 @@ function drawGame() {
 	// Draw food
 	ctx.drawImage(foodImg, food.x, food.y);
 
+	ctx.fillStyle = "orange";
+	ctx.fillRect(bombs.x, bombs.y, box, box);
+	ctx.fillRect(bombs.x1, bombs.y1, box, box);
+	ctx.fillRect(bombs.x2, bombs.y2, box, box);
+	ctx.fillRect(bombs.x3, bombs.y3, box, box);
+	ctx.fillRect(bombs.x4, bombs.y4, box, box);
+	ctx.fillRect(bombs.x5, bombs.y5, box, box);
+	ctx.fillRect(bombs.x6, bombs.y6, box, box);
+	ctx.fillRect(bombs.x7, bombs.y7, box, box);
 	// Draw snake
 	for (let i = 0; i < snake.length; i++) {
 		// Change color
@@ -74,10 +108,15 @@ function drawGame() {
 		ctx.fillRect(snake[i].x, snake[i].y, box, box);
 	}
 
-	// Draw some text
+	// Draw score
 	ctx.fillStyle = "white";
 	ctx.font = "50px Arial";
-	ctx.fillText(score, box * 2.5, box * 1.7);
+	ctx.fillText('Score: ' + score, box * 2.5, box * 1.7);
+
+	// Draw HP
+	ctx.fillStyle = "white";
+	ctx.font = "50px Arial";
+	ctx.fillText('HP: ' + hp, box * 9.5, box * 1.7);
 
 	// X snake
 	let snakeX =snake[0].x;
@@ -94,6 +133,170 @@ function drawGame() {
 		};		
 	} else {
 		snake.pop();
+	}
+
+	if (snakeX == bombs.x && snakeY == bombs.y) {
+		hp = hp - 10;
+		bombs = {
+			x: Math.floor((Math.random() * 17 + 1)) * box,
+			y: Math.floor((Math.random() * 15 + 3)) * box,
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+			x5: Math.floor((Math.random() * 17 + 1)) * box,
+			y5: Math.floor((Math.random() * 15 + 3)) * box,
+			x6: Math.floor((Math.random() * 17 + 1)) * box,
+			y6: Math.floor((Math.random() * 15 + 3)) * box,
+			x7: Math.floor((Math.random() * 17 + 1)) * box,
+			y7: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+	else if (snakeX == bombs.x1 && snakeY == bombs.y1) {
+		hp = hp - 10;
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+			x5: Math.floor((Math.random() * 17 + 1)) * box,
+			y5: Math.floor((Math.random() * 15 + 3)) * box,
+			x6: Math.floor((Math.random() * 17 + 1)) * box,
+			y6: Math.floor((Math.random() * 15 + 3)) * box,
+			x7: Math.floor((Math.random() * 17 + 1)) * box,
+			y7: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+	else if (snakeX == bombs.x2 && snakeY == bombs.y2) {
+		hp = hp - 10;
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+			x5: Math.floor((Math.random() * 17 + 1)) * box,
+			y5: Math.floor((Math.random() * 15 + 3)) * box,
+			x6: Math.floor((Math.random() * 17 + 1)) * box,
+			y6: Math.floor((Math.random() * 15 + 3)) * box,
+			x7: Math.floor((Math.random() * 17 + 1)) * box,
+			y7: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+	else if (snakeX == bombs.x3 && snakeY == bombs.y3) {
+		hp = hp - 10;
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+			x5: Math.floor((Math.random() * 17 + 1)) * box,
+			y5: Math.floor((Math.random() * 15 + 3)) * box,
+			x6: Math.floor((Math.random() * 17 + 1)) * box,
+			y6: Math.floor((Math.random() * 15 + 3)) * box,
+			x7: Math.floor((Math.random() * 17 + 1)) * box,
+			y7: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+	else if (snakeX == bombs.x4 && snakeY == bombs.y4) {
+		hp = hp - 10;
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+			x5: Math.floor((Math.random() * 17 + 1)) * box,
+			y5: Math.floor((Math.random() * 15 + 3)) * box,
+			x6: Math.floor((Math.random() * 17 + 1)) * box,
+			y6: Math.floor((Math.random() * 15 + 3)) * box,
+			x7: Math.floor((Math.random() * 17 + 1)) * box,
+			y7: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+	else if (snakeX == bombs.x5 && snakeY == bombs.y5) {
+		hp = hp - 10;
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+			x5: Math.floor((Math.random() * 17 + 1)) * box,
+			y5: Math.floor((Math.random() * 15 + 3)) * box,
+			x6: Math.floor((Math.random() * 17 + 1)) * box,
+			y6: Math.floor((Math.random() * 15 + 3)) * box,
+			x7: Math.floor((Math.random() * 17 + 1)) * box,
+			y7: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+	else if (snakeX == bombs.x6 && snakeY == bombs.y6) {
+		hp = hp - 10;
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+			x5: Math.floor((Math.random() * 17 + 1)) * box,
+			y5: Math.floor((Math.random() * 15 + 3)) * box,
+			x6: Math.floor((Math.random() * 17 + 1)) * box,
+			y6: Math.floor((Math.random() * 15 + 3)) * box,
+			x7: Math.floor((Math.random() * 17 + 1)) * box,
+			y7: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+
+	if (hp == 50) {
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+			x4: Math.floor((Math.random() * 17 + 1)) * box,
+			y4: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	} 
+
+	else if (hp == 30) {
+		bombs = {
+			x1: Math.floor((Math.random() * 17 + 1)) * box,
+			y1: Math.floor((Math.random() * 15 + 3)) * box,
+			x2: Math.floor((Math.random() * 17 + 1)) * box,
+			y2: Math.floor((Math.random() * 15 + 3)) * box,
+			x3: Math.floor((Math.random() * 17 + 1)) * box,
+			y3: Math.floor((Math.random() * 15 + 3)) * box,
+		}
+	}
+
+	else if (hp == 0) {
+		clearInterval(game);
 	}
 	// Game over
 	if (snakeX < box || snakeX > box * 17 ||
